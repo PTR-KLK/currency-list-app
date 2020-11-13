@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import listReducer from "../features/currenciesSlice";
+import currenciesReducer from "../features/currenciesSlice";
 import favoritesReducer from "../features/favoritesSlice";
+import currencyReducer from "../features/currencySlice";
 
 export default configureStore({
   reducer: {
-    currencies: listReducer,
+    currencies: currenciesReducer,
+    currency: currencyReducer,
     favorites: favoritesReducer,
   },
 });

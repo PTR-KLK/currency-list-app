@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/home/Home";
+import Currency from "./pages/currency/Currency";
 
 function App() {
   return (
@@ -9,13 +10,12 @@ function App() {
         <nav>
           <Link to="/">Home</Link>{" "}
         </nav>
-        <header>
+        <section>
           <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/currency/:currencyId" component={Currency} />
           </Switch>
-        </header>
+        </section>
       </main>
     </Router>
   );

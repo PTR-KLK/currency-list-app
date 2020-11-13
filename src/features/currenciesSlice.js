@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currencies: {},
+  currencies: [],
   loading: false,
   error: false,
 };
@@ -31,13 +31,13 @@ export const {
   getCurrenciesFailure,
 } = currenciesSlice.actions;
 
-export function fetchCurrencies() {
+export function fetchCurrencies(url) {
   return async (dispatch) => {
     dispatch(getCurrencies());
 
-    await fetch("http://api.nbp.pl/api/exchangerates/tables/A/today/")
+    await fetch(url)
       .then((response) => response.json())
-      .then((data) => dispatch(getCurrenciesSuccess(data[0])))
+      .then((data) => dispatch(getCurrenciesSuccess(data)))
       .catch(() => dispatch(getCurrenciesFailure()));
   };
 }
