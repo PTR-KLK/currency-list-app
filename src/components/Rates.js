@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCurrency, selectCurrency } from "../../features/currencySlice";
+import { fetchCurrency, selectCurrency } from "../features/currencySlice";
+import { ListGroup } from "react-bootstrap";
 
-export default function Currency({ match }) {
+export default function Rates({ currencyId }) {
   const dispatch = useDispatch();
   const { currency, loading, error } = useSelector(selectCurrency);
-  const {
-    params: { currencyId },
-  } = match;
 
   const url = `http://api.nbp.pl/api/exchangerates/rates/a/${currencyId}/last/10/`;
 
@@ -19,18 +17,21 @@ export default function Currency({ match }) {
   if (error) return <p>Error</p>;
 
   return (
-    <div>
-      <h2>
-        {currency.currency} ({currency.code}):{" "}
-      </h2>
-      <ul>
+    <>
+      <h2 className="mt-3">{currency.currency}</h2>
+      <ListGroup as="ul">
         {currency.rates &&
           currency.rates.map((el) => (
-            <li key={el.no}>
-              {el.effectiveDate}: {el.mid}PLN
-            </li>
+            <ListGroup.Item
+              as="li"
+              key={el.no}
+              className="d-flex justify-content-between"
+            >
+              {el.effectiveDate}
+              <span>{el.mid} PLN</span>
+            </ListGroup.Item>
           ))}
-      </ul>
-    </div>
+      </ListGroup>
+    </>
   );
 }
