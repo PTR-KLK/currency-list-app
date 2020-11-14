@@ -5,7 +5,13 @@ import {
   fetchCurrencies,
   selectCurrencies,
 } from "../../features/currenciesSlice";
-import { addFavorite, selectFavorites } from "../../features/favoritesSlice";
+import {
+  addFavorite,
+  removeFavorite,
+  setChecked,
+  selectFavorites,
+  selectChecked,
+} from "../../features/favoritesSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -15,6 +21,7 @@ export default function Home() {
     error,
   } = useSelector(selectCurrencies);
   const favorites = useSelector(selectFavorites);
+  const checked = useSelector(selectChecked);
 
   const url = "http://api.nbp.pl/api/exchangerates/tables/A/";
 
@@ -32,6 +39,21 @@ export default function Home() {
     if (!favorites.some((el) => el.code === selected)) {
       dispatch(addFavorite(favorite));
     }
+  };
+
+  const checkCurrency = (event) => {
+    const selected = event.target.value;
+
+    return !checked.includes(selected)
+      ? dispatch(setChecked([...checked, selected]))
+      : dispatch(setChecked(checked.filter((el) => el !== selected)));
+  };
+
+  const removeCurrency = () => {
+    dispatch(
+      removeFavorite(favorites.filter((el) => !checked.includes(el.code)))
+    );
+    dispatch(setChecked([]));
   };
 
   return (
@@ -53,6 +75,11 @@ export default function Home() {
         {favorites.length > 0
           ? favorites.map((el) => (
               <li key={el.code}>
+                <input
+                  type="checkbox"
+                  value={el.code}
+                  onClick={checkCurrency}
+                />
                 <Link to={`/currency/${el.code}`}>
                   {el.currency} ({el.code}):
                 </Link>{" "}
@@ -61,6 +88,9 @@ export default function Home() {
             ))
           : "No favorites so far..."}
       </ul>
+      {checked.length > 0 ? (
+        <button onClick={removeCurrency}>Remove</button>
+      ) : null}
     </div>
   );
 }
