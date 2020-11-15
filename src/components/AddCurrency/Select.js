@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCurrencies } from "../features/currenciesSlice";
-import { setSelected } from "../features/favoritesSlice";
+import { selectCurrencies } from "../../features/currenciesSlice";
+import { setSelected } from "../../features/favoritesSlice";
 import { Form } from "react-bootstrap";
 
 export default function Select() {

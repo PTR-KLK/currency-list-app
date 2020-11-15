@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCurrency, selectCurrency } from "../features/currencySlice";
-import Rates from "../components/Rates";
+import Rates from "../components/Currency/Rates";
 import Layout from "../components/Layout";
 import Loading from "../components/Loading";
 
@@ -11,7 +11,7 @@ export default function Currency({ match }) {
   } = match;
 
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(selectCurrency);
+  const { currency, loading, error } = useSelector(selectCurrency);
 
   const url = `http://api.nbp.pl/api/exchangerates/rates/a/${currencyId}/last/7/`;
 
@@ -20,7 +20,10 @@ export default function Currency({ match }) {
   }, [dispatch, url]);
 
   return (
-    <Layout homeButton title={currencyId}>
+    <Layout
+      homeButton
+      title={currency ? `${currency.code} - ${currency.currency}` : currencyId}
+    >
       {loading ? (
         <Loading />
       ) : error ? (

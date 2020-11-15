@@ -5,7 +5,7 @@ import {
   setChecked,
   selectFavorites,
   selectChecked,
-} from "../features/favoritesSlice";
+} from "../../features/favoritesSlice";
 import { ListGroup, FormCheck } from "react-bootstrap";
 
 export default function Favorites() {

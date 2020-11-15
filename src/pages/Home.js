@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { selectChecked, showModal } from "../features/favoritesSlice";
 import Layout from "../components/Layout";
-import Favorites from "../components/Favorites";
+import Favorites from "../components/Home/Favorites";
 
 export default function Home() {
   const dispatch = useDispatch();

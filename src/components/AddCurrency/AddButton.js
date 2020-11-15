@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCurrencies } from "../features/currenciesSlice";
+import { selectCurrencies } from "../../features/currenciesSlice";
 import {
   addFavorite,
   showToast,
   setToastMessage,
   selectFavorites,
   selectSelected,
-} from "../features/favoritesSlice";
+} from "../../features/favoritesSlice";
 import { Button } from "react-bootstrap";
 
 export default function AddButton() {

@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCurrencies, selectCurrencies } from "../features/currenciesSlice";
 import Layout from "../components/Layout";
-import Select from "../components/Select";
-import AddButton from "../components/AddButton";
 import Loading from "../components/Loading";
+import Select from "../components/AddCurrency/Select";
+import AddButton from "../components/AddCurrency/AddButton";
 
 export default function AddCurrency() {
   const dispatch = useDispatch();
