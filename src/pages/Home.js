@@ -1,13 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { selectChecked } from "../features/favoritesSlice";
+import { selectChecked, showModal } from "../features/favoritesSlice";
 import Layout from "../components/Layout";
 import Favorites from "../components/Favorites";
-import RemoveButton from "../components/RemoveButton";
 
 export default function Home() {
+  const dispatch = useDispatch();
   const checked = useSelector(selectChecked);
 
   return (
@@ -18,7 +18,12 @@ export default function Home() {
           Add Currency
         </Button>
       </LinkContainer>
-      {checked.length > 0 ? <RemoveButton /> : null}
+      {checked.length > 0 ? (
+        <Button variant="danger" onClick={() => dispatch(showModal(true))}>
+          {" "}
+          Remove Item/s
+        </Button>
+      ) : null}
     </Layout>
   );
 }

@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCurrencies, selectCurrencies } from "../features/currenciesSlice";
-import { selectToast } from "../features/favoritesSlice";
 import Layout from "../components/Layout";
 import Select from "../components/Select";
 import AddButton from "../components/AddButton";
-import Message from "../components/Message";
 import Loading from "../components/Loading";
 
 export default function AddCurrency() {
@@ -15,7 +13,6 @@ export default function AddCurrency() {
     loading,
     error,
   } = useSelector(selectCurrencies);
-  const toast = useSelector(selectToast);
 
   const url = "http://api.nbp.pl/api/exchangerates/tables/A/";
 
@@ -24,20 +21,17 @@ export default function AddCurrency() {
   }, [dispatch, url]);
 
   return (
-    <>
-      {toast ? <Message /> : null}
-      <Layout homeButton title="Add Currency">
-        {loading || !today ? (
-          <Loading />
-        ) : error ? (
-          <p className="mt-3 text-center">Error fetching data</p>
-        ) : (
-          <>
-            <Select />
-            <AddButton />
-          </>
-        )}
-      </Layout>
-    </>
+    <Layout homeButton title="Add Currency">
+      {loading || !today ? (
+        <Loading />
+      ) : error ? (
+        <p className="mt-3 text-center">Error fetching data</p>
+      ) : (
+        <>
+          <Select />
+          <AddButton />
+        </>
+      )}
+    </Layout>
   );
 }

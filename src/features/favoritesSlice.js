@@ -6,6 +6,7 @@ const initialState = {
   selected: "THB",
   toast: false,
   toastMessage: "",
+  modal: false,
 };
 
 const favoritesSlice = createSlice({
@@ -30,6 +31,9 @@ const favoritesSlice = createSlice({
     setToastMessage: (state, action) => {
       state.toastMessage = action.payload;
     },
+    showModal: (state, action) => {
+      state.modal = action.payload;
+    },
   },
 });
 
@@ -40,6 +44,7 @@ export const {
   setSelected,
   showToast,
   setToastMessage,
+  showModal,
 } = favoritesSlice.actions;
 
 export const selectFavorites = (state) => state.favorites.favorites;
@@ -47,5 +52,6 @@ export const selectChecked = (state) => state.favorites.checked;
 export const selectSelected = (state) => state.favorites.selected;
 export const selectToast = (state) => state.favorites.toast;
 export const selectToastMessage = (state) => state.favorites.toastMessage;
+export const selectModal = (state) => state.favorites.modal;
 
 export default favoritesSlice.reducer;

@@ -3,7 +3,7 @@ import { Toast } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { showToast, selectToastMessage } from "../features/favoritesSlice";
 
-export default function Message() {
+export default function ToastMessage() {
   const dispatch = useDispatch();
   const toastMessage = useSelector(selectToastMessage);
 
