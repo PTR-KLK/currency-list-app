@@ -31,7 +31,9 @@ export default function AddButton() {
       );
       dispatch(showToast(true));
     } else {
-      dispatch(setToastMessage([]));
+      dispatch(
+        setToastMessage(["Notification", `Currency already in the database`])
+      );
       dispatch(showToast(true));
     }
   };
