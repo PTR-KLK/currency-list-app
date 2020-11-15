@@ -23,11 +23,16 @@ export default function AddButton() {
 
     if (!favorites.some((el) => el.code === selected)) {
       dispatch(addFavorite(favorite));
+      dispatch(
+        setToastMessage([
+          "Currency added",
+          `${favorite.code} added to collection`,
+        ])
+      );
       dispatch(showToast(true));
-      dispatch(setToastMessage(favorite.code));
     } else {
+      dispatch(setToastMessage([]));
       dispatch(showToast(true));
-      dispatch(setToastMessage(""));
     }
   };
 

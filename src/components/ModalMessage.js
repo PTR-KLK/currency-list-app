@@ -8,6 +8,8 @@ import {
   removeFavorite,
   selectModal,
   showModal,
+  showToast,
+  setToastMessage,
 } from "../features/favoritesSlice";
 
 export default function ModalMessage() {
@@ -26,6 +28,13 @@ export default function ModalMessage() {
       removeFavorite(favorites.filter((el) => !checked.includes(el.code)))
     );
     dispatch(showModal(false));
+    dispatch(
+      setToastMessage([
+        "Deletion",
+        `${checked.join(", ")} removed from collection`,
+      ])
+    );
+    dispatch(showToast(true));
     dispatch(setChecked([]));
   };
 

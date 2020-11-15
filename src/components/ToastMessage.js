@@ -21,13 +21,11 @@ export default function ToastMessage() {
     >
       <Toast.Header>
         <strong className="mr-auto">
-          {toastMessage ? "Currency added" : "Notification"}
+          {toastMessage ? toastMessage[0] : "Notification"}
         </strong>
       </Toast.Header>
       <Toast.Body>
-        {toastMessage
-          ? `${toastMessage} added to collection.`
-          : "Currency already in the database."}
+        {toastMessage ? toastMessage[1] : "Currency already in the database."}
       </Toast.Body>
     </Toast>
   );

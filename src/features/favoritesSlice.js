@@ -5,7 +5,7 @@ const initialState = {
   checked: [],
   selected: "THB",
   toast: false,
-  toastMessage: "",
+  toastMessage: [],
   modal: false,
 };
 
