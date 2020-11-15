@@ -12,7 +12,6 @@ export default function Select() {
 
   const selectCurrency = (event) => {
     dispatch(setSelected(event.target.value));
-    console.log(event.target.value);
   };
 
   return (
