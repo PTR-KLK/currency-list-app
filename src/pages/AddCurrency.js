@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import Select from "../components/Select";
 import AddButton from "../components/AddButton";
 import Message from "../components/Message";
+import Loading from "../components/Loading";
 
 export default function AddCurrency() {
   const dispatch = useDispatch();
@@ -27,9 +28,9 @@ export default function AddCurrency() {
       {toast ? <Message /> : null}
       <Layout homeButton title="Add Currency">
         {loading || !today ? (
-          <p>Loading...</p>
+          <Loading />
         ) : error ? (
-          <p>Error</p>
+          <p className="mt-3 text-center">Error fetching data</p>
         ) : (
           <>
             <Select />

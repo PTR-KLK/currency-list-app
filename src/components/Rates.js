@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCurrency, selectCurrency } from "../features/currencySlice";
 import { ListGroup } from "react-bootstrap";
+import Loading from "../components/Loading";
 
 export default function Rates({ currencyId }) {
   const dispatch = useDispatch();
@@ -13,8 +14,8 @@ export default function Rates({ currencyId }) {
     dispatch(fetchCurrency(url));
   }, [dispatch, url]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
+  if (loading) return <Loading />;
+  if (error) return <p className="mt-3 text-center">Error fetching data</p>;
 
   return (
     <>
