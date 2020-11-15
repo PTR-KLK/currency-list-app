@@ -2,6 +2,16 @@
 
 Simple web user interface to connect with [NBP web API](http://api.nbp.pl/).
 
+## Setup:
+
+Clone the repo, go to repo folder:
+
+### `cd currency-list-app `
+
+and install dependencies:
+
+### `yarn`
+
 ## Available Scripts
 
 In the project directory, you can run:
